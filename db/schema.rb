@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_24_202102) do
+ActiveRecord::Schema.define(version: 2021_04_24_221536) do
+
+  create_table "nodes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "kind"
+    t.string "ipaddress"
+    t.string "hostname"
+    t.boolean "deleted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "operations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "operation_type"
+    t.bigint "user_id"
+    t.bigint "node_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["node_id"], name: "index_operations_on_node_id"
+    t.index ["user_id"], name: "index_operations_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,4 +40,6 @@ ActiveRecord::Schema.define(version: 2021_04_24_202102) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "operations", "nodes"
+  add_foreign_key "operations", "users"
 end

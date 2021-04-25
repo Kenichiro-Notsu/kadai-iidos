@@ -1,0 +1,7 @@
+ja:
+  enums:
+    operation:
+      operation_type:
+        create_node: "作成"
+        update_node: "変更"
+        delete_node: "削除"
