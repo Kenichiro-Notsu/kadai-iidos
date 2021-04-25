@@ -1,0 +1,24 @@
+<h1>ノード一覧</h1>
+
+<ul>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ノード名</th>
+        <th>ノード種別</th>
+        <th>IPアドレス</th>
+        <th>ホスト名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @nodes.each do |node| %>
+        <tr>
+          <td><%= link_to node.name, node %></td>
+          <td><%= node.kind %></td>
+          <td><%= node.ipaddress %></td>
+          <td><%= node.hostname %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</ul>
