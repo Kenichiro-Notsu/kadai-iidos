@@ -13,3 +13,25 @@
 <p>更新日時：　<%= @node.updated_at  %></p>
 
 <p>操作履歴</p>
+<ul>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>変更時間</th>
+        <th>ノード名</th>
+        <th>ユーザ名</th>
+        <th>変更内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @operations.each do |operation| %>
+        <tr>
+          <td><%= operation.updated_at  %></td>
+          <td><%= operation.node_id %></td>
+          <td><%= operation.user.id %></td>
+          <td><%= operation.operation_type %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</ul>

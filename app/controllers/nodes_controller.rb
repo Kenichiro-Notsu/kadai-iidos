@@ -2,10 +2,12 @@ class NodesController < ApplicationController
   before_action :set_node, only: %i[show edit update destroy]
 
   def index
-    @nodes = Node.all.page(params[:page])
+    @nodes = Node.where(deleted: params[:deleted] ? true : false).page(params[:page])
   end
 
-  def show; end
+  def show
+    @operations = @node.operations.order(updated_at: :desc)
+  end
 
   def new
     @node = Node.new
@@ -39,7 +41,7 @@ class NodesController < ApplicationController
 
   def destroy
     @node = Node.find(params[:id])
-    @node.destroy
+    @node.update(deleted: true)
     current_user.create_operation(@node, :delete_node)
     flash[:success] = 'Node は正常に削除されました'
     redirect_to root_url

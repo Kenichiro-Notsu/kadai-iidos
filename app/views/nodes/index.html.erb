@@ -1,7 +1,9 @@
 <h1>ノード一覧</h1>
 
 <%= link_to 'ノード登録', new_node_path, class: 'btn btn-lg btn-primary' %>
-<%= link_to '変更履歴', history_index_path, class: 'btn btn-lg btn-primary' %>
+<%= link_to '変更履歴', history_path, class: 'btn btn-lg btn-primary' %>
+<%= link_to '削除済み', nodes_path(deleted: true), class: 'btn btn-lg btn-primary' %>
+<%= link_to '削除されてない', nodes_path, class: 'btn btn-lg btn-primary' %>
 
 <ul>
   <table class="table table-striped">
