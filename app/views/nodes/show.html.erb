@@ -1,9 +1,7 @@
-<h1>id: <%= @node.id %> のノード詳細ページ</h1>
+<h1><p><%= @node.name %></p></h1>
 
-<%= link_to 'ノード編集', edit_node_path(@node), class: 'btn btn-lg btn-primary' %>
-<%= link_to 'ノード削除', @node, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } , class: 'btn btn-lg btn-primary' %>
-
-<%= link_to '一覧へ戻る', nodes_path, class: 'btn btn-lg btn-primary' %>
+<%= link_to 'ノード編集', edit_node_path(@node), class: 'btn btn-lg btn-primary mb-3' %>
+<%= link_to 'ノード削除', @node, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } , class: 'btn btn-lg btn-danger mb-3' %>
 
 <p>ノード名：　<%= @node.name %></p>
 <p>ノード種別：　<%= @node.kind %></p>
@@ -13,25 +11,22 @@
 <p>更新日時：　<%= @node.updated_at  %></p>
 
 <p>操作履歴</p>
-<ul>
-  <table class="table table-striped">
-    <thead>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>操作日時</th>
+      <th>操作ユーザ</th>
+      <th>操作種別</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @operations.each do |operation| %>
       <tr>
-        <th>変更時間</th>
-        <th>ノード名</th>
-        <th>ユーザ名</th>
-        <th>変更内容</th>
+        <td><%= operation.updated_at  %></td>
+        <td><%= operation.user.name %></td>
+        <td><%= t('enums.operation.operation_type.' + operation.operation_type) %></td>
       </tr>
-    </thead>
-    <tbody>
-      <% @operations.each do |operation| %>
-        <tr>
-          <td><%= operation.updated_at  %></td>
-          <td><%= operation.node_id %></td>
-          <td><%= operation.user.id %></td>
-          <td><%= operation.operation_type %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</ul>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to '一覧に戻る', nodes_path %>

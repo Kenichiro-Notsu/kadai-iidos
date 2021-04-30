@@ -2,7 +2,7 @@ class NodesController < ApplicationController
   before_action :set_node, only: %i[show edit update destroy]
 
   def index
-    @nodes = Node.where(deleted: params[:deleted] ? true : false).page(params[:page])
+    @nodes = Node.where(deleted: params[:deleted] ? true : false).page(params[:page]).per(10)
   end
 
   def show

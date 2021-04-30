@@ -1,9 +1,14 @@
 <h1>ノード一覧</h1>
 
-<%= link_to 'ノード登録', new_node_path, class: 'btn btn-lg btn-primary' %>
-<%= link_to '変更履歴', history_path, class: 'btn btn-lg btn-primary' %>
-<%= link_to '削除済み', nodes_path(deleted: true), class: 'btn btn-lg btn-primary' %>
-<%= link_to '削除されてない', nodes_path, class: 'btn btn-lg btn-primary' %>
+<%= link_to 'ノードを追加', new_node_path, class: 'btn btn-lg btn-primary mb-3' %>
+<%= link_to 'ノード変更履歴', history_path, class: 'btn btn-lg btn-primary mb-3' %>
+
+  <div class="col-sm-8">
+    <ul class="nav nav-tabs nav-justified mb-3">
+      <li class="nav-item"><a href="<%= nodes_path %>" class="nav-link <%= 'active' if current_page?(nodes_path) %>">有効ノード</a></li>
+      <li class="nav-item"><a href="<%= nodes_path(deleted: true) %>" class="nav-link <%= 'active' if current_page?(nodes_path(deleted: true)) %>">削除済みノード</a></li>
+    </ul>
+  </div>
 
 <ul>
   <table class="table table-striped">
@@ -13,6 +18,7 @@
         <th>ノード種別</th>
         <th>IPアドレス</th>
         <th>ホスト名</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -22,8 +28,10 @@
           <td><%= node.kind %></td>
           <td><%= node.ipaddress %></td>
           <td><%= node.hostname %></td>
+          <td><%= link_to '編集', edit_node_path(node) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </ul>
+<%= paginate @nodes %>
