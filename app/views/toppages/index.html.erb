@@ -1,5 +1,7 @@
 <% if logged_in? %>
   <p>ログイン完了ユーザ: <%= current_user.name %></p>
+    <%= link_to 'ノード一覧', nodes_path, class: 'btn btn-lg btn-primary' %>
+    <%= link_to 'ノード登録', new_node_path, class: 'btn btn-lg btn-primary' %>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">

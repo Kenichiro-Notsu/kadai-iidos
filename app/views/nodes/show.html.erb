@@ -1,0 +1,15 @@
+<h1>id: <%= @node.id %> のノード詳細ページ</h1>
+
+<%= link_to 'ノード編集', edit_node_path(@node), class: 'btn btn-lg btn-primary' %>
+<%= link_to 'ノード削除', @node, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } , class: 'btn btn-lg btn-primary' %>
+
+<%= link_to '一覧へ戻る', nodes_path, class: 'btn btn-lg btn-primary' %>
+
+<p>ノード名：　<%= @node.name %></p>
+<p>ノード種別：　<%= @node.kind %></p>
+<p>IPアドレス：　<%= @node.ipaddress %></p>
+<p>ホスト名：　<%= @node.hostname %></p>
+<p>作成日時：　<%= @node.created_at  %></p>
+<p>更新日時：　<%= @node.updated_at  %></p>
+
+<p>操作履歴</p>

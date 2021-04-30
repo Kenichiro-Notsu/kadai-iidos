@@ -7,22 +7,8 @@ class User < ApplicationRecord
 
   has_many :operations
   
-  def create_node(node_params)
-    node = Node.new(node_params)
-    node.save
-    operation = self.operations.build(node: node, operation_type: :create_node)
-    operation.save
-  end
-  
-  def update_node(node, node_params)
-    node.update(node_params)
-    operation = self.operations.build(node: node, operation_type: :update_node)
-    operation.save
-  end
-  
-  def delete_node(node)
-    node.update(deleted: true)
-    operation = self.operations.build(node: node, operation_type: :delete_node)
+  def create_operation(node, operation_type)
+    operation = self.operations.build(node: node, operation_type: operation_type)
     operation.save
   end
 end
