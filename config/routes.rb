@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'history', to: 'operations#index'
 
   get 'signup', to: 'users#new'
-  resources :users, only: [:index, :show, :create]
+  resources :users, only: [:create]
 
   resources :nodes
   resources :operations, only: [:index]
