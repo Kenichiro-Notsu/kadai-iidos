@@ -5,7 +5,7 @@
 
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="<%= nodes_path %>" class="nav-link <%= 'active' if current_page?(nodes_path) %>">有効ノード</a></li>
+      <li class="nav-item"><a href="<%= nodes_path %>" class="nav-link <%= 'active' if current_page?(params[:deleted]) %>">有効ノード</a></li>
       <li class="nav-item"><a href="<%= nodes_path(deleted: true) %>" class="nav-link <%= 'active' if current_page?(nodes_path(deleted: true)) %>">削除済みノード</a></li>
     </ul>
   </div>
